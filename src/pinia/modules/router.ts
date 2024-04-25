@@ -63,7 +63,7 @@ export const useRouterStore=defineStore('router',()=>{
                     "keepAlive": true,
                     "defaultMenu": false,
                     "title": "首页",
-                    "icon": "iconfont icon-home-page",
+                    "icon": "ArrowRightBold",
                     "closeTab": false,
                     "mainTable": "",
                     "associateTables": ""
@@ -87,7 +87,7 @@ export const useRouterStore=defineStore('router',()=>{
                     "keepAlive": false,
                     "defaultMenu": false,
                     "title": "错误页面",
-                    "icon": "iconfont icon-home-page",
+                    "icon": "Setting",
                     "closeTab": false,
                     "mainTable": "",
                     "associateTables": ""
@@ -149,8 +149,8 @@ export const useRouterStore=defineStore('router',()=>{
                     "activeName": "",
                     "keepAlive": true,
                     "defaultMenu": false,
-                    "title": "多级路由",
-                    "icon": "iconfont icon-visit-management",
+                    "title": "嵌套路由",
+                    "icon": "Money",
                     "closeTab": false,
                     "mainTable": "",
                     "associateTables": ""
@@ -226,7 +226,7 @@ export const useRouterStore=defineStore('router',()=>{
                             "keepAlive": false,
                             "defaultMenu": false,
                             "title": "菜单Grpoup",
-                            "icon": "",
+                            "icon": "Notebook",
                             "closeTab": false,
                             "mainTable": "",
                             "associateTables": ""
@@ -309,7 +309,7 @@ export const useRouterStore=defineStore('router',()=>{
                     "keepAlive": false,
                     "defaultMenu": false,
                     "title": "超级管理员",
-                    "icon": "ele-Avatar",
+                    "icon": "Avatar",
                     "closeTab": false,
                     "mainTable": "",
                     "associateTables": ""
@@ -326,7 +326,7 @@ export const useRouterStore=defineStore('router',()=>{
                         "path": "menu",
                         "name": "menu",
                         "hidden": false,
-                        "component": "views/superAdmin/menu/menu.vue",
+                        "component": "views/superAdmin/menu/index.vue",
                         "sort": 2,
                         "meta": {
                             "activeName": "",
@@ -374,7 +374,7 @@ export const useRouterStore=defineStore('router',()=>{
                             "keepAlive": true,
                             "defaultMenu": false,
                             "title": "首页",
-                            "icon": "iconfont icon-home-page",
+                            "icon": "Aim",
                             "closeTab": false,
                             "mainTable": "",
                             "associateTables": ""
@@ -397,7 +397,7 @@ export const useRouterStore=defineStore('router',()=>{
                             "keepAlive": false,
                             "defaultMenu": false,
                             "title": "错误页面",
-                            "icon": "iconfont icon-home-page",
+                            "icon": "AlarmClock",
                             "closeTab": false,
                             "mainTable": "",
                             "associateTables": ""
@@ -611,7 +611,7 @@ export const useRouterStore=defineStore('router',()=>{
                                 "path": "menu",
                                 "name": "menu",
                                 "hidden": false,
-                                "component": "views/superAdmin/menu/menu.vue",
+                                "component": "views/superAdmin/menu/index.vue",
                                 "sort": 2,
                                 "meta": {
                                     "activeName": "",

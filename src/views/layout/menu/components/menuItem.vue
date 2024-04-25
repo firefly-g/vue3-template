@@ -1,13 +1,14 @@
 <template>
 	<el-menu-item v-if="!isHide" :index="routerInfo.name">
-		<el-icon v-if="routerInfo.meta?.icon"><Location /></el-icon>
+		<SvgIcon v-if="routerInfo.meta?.icon" :name="routerInfo.meta?.icon"></SvgIcon>
 		<span>{{ routerInfo.meta.title }}</span>
 	</el-menu-item>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import { Location } from '@element-plus/icons-vue'
+import { computed,defineAsyncComponent } from 'vue'
+const SvgIcon = defineAsyncComponent(() => import("@/components/SvgIcon/index.vue"))
+
 interface Props {
 	routerInfo: any
 	collapse?: boolean
