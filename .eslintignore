@@ -1,0 +1,9 @@
+build/*.js
+src/assets
+public
+dist
+*.sh
+node_modules
+.vscode
+.idea
+mock
