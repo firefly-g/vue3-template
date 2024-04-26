@@ -12,8 +12,10 @@ const current = shallowRef(CompA)
   <div class="demo">
     <label><input type="radio" v-model="current" :value="CompA" /> A</label>
     <label><input type="radio" v-model="current" :value="CompB" /> B</label>
-    <KeepAlive :include="['test']">
-      <component :is="current"></component>
-    </KeepAlive>
+    <transition :duration="500"  mode="out-in" name="fade-transform" >
+      <keep-alive :include="['test']">
+        <component :is="current"></component>
+      </keep-alive>
+    </transition>
   </div>
 </template>

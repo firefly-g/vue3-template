@@ -1,11 +1,13 @@
 <template>
+  <div>
     <router-view v-slot="{ Component }">
       <transition mode="out-in" name="fade-transform">
-        <keep-alive :include="routerStore.keepAliveRouters">
+        <keep-alive>
           <component :is="Component" />
         </keep-alive>
       </transition>
-	</router-view>
+	  </router-view>
+  </div>
   </template>
 
 <script setup lang="ts">

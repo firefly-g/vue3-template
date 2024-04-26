@@ -1,16 +1,15 @@
 <template>
-	<transition :duration="500"  mode="out-in" name="fade-transform" >
-		<router-view
-			v-slot="{ Component }"
-			:key="route.fullPath"
-			element-loading-text="正在加载中"
-			class="content-box"
-		>
+	<router-view
+		v-slot="{ Component }"
+		element-loading-text="正在加载中"
+		class="content-box"
+	>
+		<transition :duration="500"  mode="out-in" name="fade-transform" >
 			<keep-alive>
 				<component :key="route.name" :is="Component" />
 			</keep-alive>
-		</router-view>	
-	</transition>		
+		</transition>	
+	</router-view>	
 </template>
 
 <script setup lang="ts">

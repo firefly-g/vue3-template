@@ -1,0 +1,10 @@
+//配置element plus 按钮主题色
+@forward "element-plus/theme-chalk/src/common/var.scss" with ($colors: (
+        "primary": ("base": #366EF4),
+        "success": ("base": #00AF71),
+        "warning": ("base": #F86F00),
+        "danger": ("base": #FF5447),
+        "error": ("base": #FF5447),
+        "info": ("base": #E7E7E7),
+    )
+);

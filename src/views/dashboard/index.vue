@@ -1,7 +1,11 @@
 <template>
     <div class="about">
-      <h1>首页</h1>
-      <el-input v-model="test"></el-input>
+      <h1>自定义按钮主题色</h1>
+      <el-button type="primary">Primary</el-button>
+      <el-button type="success">Success</el-button>
+      <el-button type="info">Info</el-button>
+      <el-button type="warning">Warning</el-button>
+      <el-button type="danger">Danger</el-button>
     </div>
   </template>
 
@@ -10,13 +14,7 @@
   defineOptions({
     name: 'dashboard'
   });
-  let  test=ref('')
-  onActivated(() => {
-    console.log('激活态--')
-  })
-  onDeactivated(() => {
-    console.log('移除--')
-  })
+
   </script>
 
   <style>
