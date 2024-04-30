@@ -9,7 +9,6 @@ import AutoImport from 'unplugin-auto-import/vite' // API 的 自动引入
 import Components from 'unplugin-vue-components/vite' // 按需加载自定义组件
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 export default defineConfig((mode)=>{
-  console.log(mode,'mode------')
   const env = loadEnv(mode.mode, process.cwd())
   for (const k in env) {
 		process.env[k] = env[k]

@@ -1,6 +1,6 @@
 <template>
     <el-card class="h-full" :body-style="{ display: 'flex', flexDirection: 'column', height: '100%', padding: '12px' }">
-        <el-table class="flex-1" :data="data" row-key="ID" :border="true">
+        <el-table class="flex-1" :data="tableData" row-key="ID" :border="true">
 			<el-table-column align="left" label="ID" min-width="100" prop="ID" />
 			<el-table-column align="left" label="展示名称" min-width="120" prop="authorityName">
 				<template #default="scope">
@@ -10,7 +10,7 @@
 			<el-table-column align="left" label="图标" min-width="140" prop="authorityName">
 				<template #default="scope">
 					<div v-if="scope.row.meta.icon" class="icon-column">
-						<SvgIcon :name="scope.row.meta.icon" />
+						<SvgIcon :name="scope.row.meta.icon"  color="#b1b3b8"/>
 					</div>
 				</template>
 			</el-table-column>
@@ -84,7 +84,6 @@
                     <el-input v-model="form.meta.title" autocomplete="off" />
                 </el-form-item>
                 <el-form-item label="图标" prop="meta.icon" style="width: 30%">
-                    <!-- <IconSelector placeholder="请输入菜单图标" v-model="form.meta.icon" /> -->
                     <SelectIcon v-model="form.meta.icon"></SelectIcon>
                 </el-form-item>
                 <el-form-item label="排序标记" prop="sort" style="width: 30%">
@@ -97,15 +96,21 @@
                     </el-select>
                 </el-form-item>
             </el-form>
+            <template #footer>
+                <div class="dialog-footer">
+                    <el-button @click="closeDialog">取 消</el-button>
+                    <el-button type="primary" @click="enterDialog">确 定</el-button>
+                </div>
+		    </template>
         </el-dialog>
     </el-card>
 </template>
 
 <script setup lang="tsx">
-import { ref,computed,defineAsyncComponent } from 'vue'
+import { ref,computed,defineAsyncComponent,reactive ,toRaw} from 'vue'
 import { useRouterStore } from '@/pinia/modules/router'
+import { emitter, MittType } from '@/utils/bus'
 const SelectIcon = defineAsyncComponent(() => import("@/components/selectIcon/index.vue"))
-
 defineOptions({
     name: "menu"
   });
@@ -113,8 +118,8 @@ interface Meta{
     activeName: string,
     title:string,
     icon: string,
-    defaultMenu: boolean,
-    closeTab: boolean,
+    defaultMenu?: boolean,
+    closeTab?: boolean,
     keepAlive: boolean,
 }
 interface MenuType{
@@ -128,10 +133,12 @@ interface MenuType{
     parameters: string[]
 	menuBtn: string[]
     sort:number
+    children:any[]
 
 }
+const menuForm = ref(null)
 const routerStore = useRouterStore()
-const data =computed(() => {
+const tableData =computed(() => {
 	return routerStore.asyncRouters?.[0]?.children
 })
 const form = ref<MenuType>({
@@ -151,8 +158,10 @@ const form = ref<MenuType>({
 	},
 	parameters: [],
 	menuBtn: [],
-    sort:1
+    sort:1,
+    children:[]
 })
+
 const menuOption = ref([
 	{
 		ID: '0',
@@ -163,8 +172,74 @@ const checkFlag = ref(false)
 const isEdit = ref(false)
 const dialogFormVisible = ref(false)
 const dialogTitle = ref('新增菜单')
+const rules = reactive({
+	path: [{ required: true, message: '请输入菜单name', trigger: 'blur' }],
+	component: [{ required: true, message: '请输入文件路径', trigger: 'blur' }],
+	'meta.title': [{ required: true, message: '请输入菜单展示名称', trigger: 'blur' }],
+})
+const setMenuOptions = (menuData, optionsData, disabled) => {
+	menuData &&
+		menuData.forEach((item) => {
+            if(item.hidden) return
+            let option = {
+					title: item.meta.title,
+					ID: String(item.ID),
+					disabled: disabled || item.ID === form.value.ID,
+				}
+
+			if (item.children && item.children.length) {
+                option.children=[]
+				setMenuOptions(item.children, option.children, disabled || item.ID === form.value.ID)
+			} 
+            optionsData.push(option)
+		})
+}
+const setOptions = () => {
+	menuOption.value = [
+		{
+			ID: '0',
+			title: '根目录',
+		},
+	]
+	setMenuOptions(tableData.value, menuOption.value, false)
+}
+const initForm = () => {
+	checkFlag.value = false
+	menuForm.value.resetFields()
+	form.value = {
+		ID: 0,
+		path: '',
+		name: '',
+		hidden: false,
+		parentId: '',
+		component: '',
+		meta: {
+			title: '',
+			icon: '',
+			keepAlive: false
+		},
+        children:[]
+	}
+}
+/**添加子菜单弹框 */
 const addMenu = (data) => {
-	console.log(data,'当前菜单信息')
+    form.value.parentId = String(data?.ID)
+    setOptions()
     dialogFormVisible.value = true
+}
+/**关闭弹窗 */
+const closeDialog = () => {
+	initForm()
+	dialogFormVisible.value = false
+}
+/**确定 */
+const enterDialog =()=>{
+    console.log(form,'form')
+    //此处为本地模拟，实际开发可自己修改
+    emitter.emit(MittType.SetMenuConfig, {type:'add',data:toRaw(form.value)})
+    dialogFormVisible.value = false
+}
+const changeName = () => {
+	form.value.path = form.value.name
 }
 </script>

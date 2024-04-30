@@ -17,11 +17,10 @@
             </el-tab-pane>
         </el-tabs>
         <el-divider direction="vertical" class="!mx-3" />
-        <el-dropdown trigger="click" style="left: 0; top: 0">
-			<el-button size="small" link>
-				更多
-                <!-- <el-icon class="ml-1"><CaretBottom /></el-icon> -->
-			</el-button>
+        <el-dropdown trigger="hover" style="left: 0; top: 0">
+            <span class="el-dropdown-link">
+                更多<el-icon class="el-icon--right"><arrow-down /></el-icon>
+            </span>
 			<template #dropdown>
 				<el-dropdown-menu>
 					<el-dropdown-item v-for="(item, index) in moreList" :key="index" @click="item.handle">{{
@@ -33,9 +32,9 @@
     </view>
 </template>
 <script setup lang="ts">
-import { computed, onUnmounted, ref, watch } from 'vue'
+import { ref, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { emitter, MittType } from '@/utils/bus'
+import { ArrowDown} from '@element-plus/icons-vue'
 const activeRouter = ref('')
 const historys = ref([])
 const route=useRoute()
@@ -67,23 +66,15 @@ watch(()=>route,
     },
 { deep: true,immediate:true })
 
-// watch(
-// 	() => historys.value,
-// 	() => {
-// 		emitter.emit(MittType.SetKeepAlive, historys.value)
-// 	},
-// 	{
-// 		deep: true,
-// 	}
-// )
 
 //切换tab
 const changeTab = (TabsPaneContext) => {
     let currentTab = historys.value.find(item=>item?.name===TabsPaneContext?.props?.name)
+    const {name,query,params}=currentTab
     router.push({
-		name: currentTab.name,
-		query: currentTab.query,
-		params: currentTab.params,
+		name,
+		query,
+		params,
 	})
 }
 //删除tab
@@ -96,10 +87,11 @@ const removeTab = (tab) => {
             router.push({ name: defaultRouter.value })
         } else{
             deleteIndex=(index < historys.value.length - 1) ? index + 1 : index - 1
+            const {name,query,params}=historys.value[deleteIndex]
             router.push({
-                name: historys.value[deleteIndex].name,
-                query: historys.value[deleteIndex].query,
-                params: historys.value[deleteIndex].params,
+                name,
+                query,
+                params,
             })
         }
     }
@@ -193,5 +185,9 @@ const moreList = [
 			}
 		}
 	}
+}
+.el-dropdown-link {
+  display: flex;
+  align-items: center;
 }
 </style>

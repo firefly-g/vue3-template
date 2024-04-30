@@ -52,6 +52,7 @@
 		'color': `${props.color}`
 	}
   })
+  const symbolId = computed(() => `${props.name}`)
   </script>
   
   <style lang="scss" scoped>

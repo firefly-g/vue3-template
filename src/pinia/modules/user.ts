@@ -53,11 +53,7 @@ export const useUserStore = defineStore('user', () => {
 
         //获取动态router
         await routerStore.SetAsyncRouter()
-        //此处拿到扁平化处理的嵌套数组
-        // const asyncRouters = routerStore.asyncRouters
-        const asyncRouters = routerStore.flatRouters
-        console.log(routerStore.asyncRouters,'路由·asyncRouters')
-        console.log(asyncRouters,'router 路由·flatRouter')
+        const asyncRouters = routerStore.asyncRouters
         //将接口中的路由配置到router中
         asyncRouters.forEach((asyncRouter) => {
             router.addRoute(asyncRouter)

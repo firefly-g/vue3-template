@@ -1,6 +1,7 @@
 <template>
   <div class="about">
-    <h1>菜单1-1</h1>
+    <h1>路由传参设置</h1>
+    
   </div>
 </template>
 <script setup>
