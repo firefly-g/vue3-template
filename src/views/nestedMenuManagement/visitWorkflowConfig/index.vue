@@ -1,21 +1,44 @@
-<script setup>
-import { shallowRef } from 'vue'
-import CompA from './CompA.vue'
-import CompB from './CompB.vue'
+<script setup lang="ts">
+import { ref,watch } from 'vue'
+import { useRoute,useRouter } from 'vue-router'
 defineOptions({
     name: 'visitWorkflowConfig'
   });
-const current = shallowRef(CompA)
+const activeTab=ref('htmlCom')
+const lists=ref(
+  [
+  {name: 'htmlCom'},
+  {name: 'javascriptCom'},
+  {name: 'cssCom'},
+  ]
+)
+const router = useRouter()
+const route = useRoute()
+const handleChange=(val)=>{
+  router.push({name:val})
+}
+watch(
+	() => route,
+	(to, now) => {
+    activeTab.value=to?.name
+	},
+	{ immediate: true }
+)
 </script>
 
 <template>
   <div class="demo">
-    <label><input type="radio" v-model="current" :value="CompA" /> A</label>
-    <label><input type="radio" v-model="current" :value="CompB" /> B</label>
-    <transition :duration="500"  mode="out-in" name="fade-transform" >
-      <keep-alive :include="['test']">
-        <component :is="current"></component>
-      </keep-alive>
-    </transition>
+    <el-radio-group v-model="activeTab" @change=handleChange>
+      <el-radio-button
+        v-for="item in lists"
+        :key="item.name"
+        :label="item.name"
+        :value="item.name"
+        />
+      >
+    </el-radio-group>
+    <router-view v-slot="{ Component }">
+      <component :is="Component" />
+    </router-view>
   </div>
 </template>

@@ -62,7 +62,7 @@ const selectMenu = (index) => {
 	if (index.indexOf('http://') > -1 || index.indexOf('https://') > -1) {
 		window.open(index)
 	} else {
-		console.log(route,'{ name: index, query, p }之后')
+		console.log( index,'{ name: index, query, p }之后')
 		router.push({ name: index, query, params })
        
 	}

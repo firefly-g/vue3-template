@@ -1,5 +1,6 @@
 <template>
   <div>
+    这是公共父路由
     <router-view v-slot="{ Component }">
       <transition mode="out-in" name="fade-transform">
         <keep-alive :include="routerStore.keepAliveRouters">

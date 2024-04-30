@@ -149,6 +149,7 @@ let asyncRouter = JSON.parse(sessionStorage.getItem('menuRouters')) ?? [
                 "name": "visitWorkflowConfig",
                 "hidden": false,
                 "component": "views/nestedMenuManagement/visitWorkflowConfig/index.vue",
+                "redirect": '/layout/nestedMenuManagement/visitWorkflowConfig/htmlCom',
                 "sort": 0,
                 "meta": {
                     "activeName": "",
@@ -164,15 +165,41 @@ let asyncRouter = JSON.parse(sessionStorage.getItem('menuRouters')) ?? [
                 "menuBtn": null,
                 "menuFiled": null,
                 "menuId": "116",
-                "children": null,
+                "children": [
+                    {
+                        "path": 'htmlCom',
+                        "name": 'htmlCom',
+                        "component":"views/nestedMenuManagement/visitWorkflowConfig/htmlCom/index.vue",
+                        "meta": {
+                        "title": 'htmlCom'
+                        }
+                    },
+                    {
+                        "path": 'javascriptCom',
+                        "name": 'javascriptCom',
+                        "component":"views/nestedMenuManagement/visitWorkflowConfig/javascriptCom/index.vue",
+                        meta: {
+                        title: 'javascriptCom'
+                        }
+                    },
+                    {
+                        "path": 'cssCom',
+                        "name": 'cssCom',
+                        "component":"views/nestedMenuManagement/visitWorkflowConfig/cssCom/index.vue",
+                        meta: {
+                        title: 'cssCom'
+                        }
+                    }
+                   
+                ],
                 "parameters": [],
             },
             {
                 "ID": 119,
                 "traceId": "",
                 "parentId": "40",
-                "path": "groupeMenu",
-                "name": "groupeMenu",
+                "path": "groupMenu",
+                "name": "groupMenu",
                 "hidden": false,
                 "component": "views/nestedMenuManagement/groupMenu/index.vue",
                 "sort": 0,
