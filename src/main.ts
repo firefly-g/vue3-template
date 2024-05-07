@@ -1,13 +1,16 @@
 import { createApp ,defineAsyncComponent} from 'vue'
-import { createPinia } from 'pinia'
-// import ElementPlus from 'element-plus'
-// import 'element-plus/dist/index.css'
+import { store } from '@/pinia/index'
 import App from './App.vue'
 import router from './router'
 import '@/style/main.scss'
 import '@/style/transition.scss';
 import 'virtual:svg-icons-register'
 import * as ElementPlusIcons from '@element-plus/icons-vue'
+// import '@/utils/routerInterdict.ts'
+import Nprogress from 'nprogress'
+import 'nprogress/nprogress.css'
+Nprogress.configure({ showSpinner: false, ease: 'ease', speed: 500 })
+Nprogress.start()
 
 const SvgIcon = defineAsyncComponent(() => import('./components/SvgIcon/index.vue'))
 const app = createApp(App)
@@ -17,11 +20,11 @@ for (const [key, component] of Object.entries(ElementPlusIcons)) {
     app.config.globalProperties.$icons.push(key)
     app.component(key, component)
 }
-app.use(createPinia())
+app.use(store)
 app.use(router)
-// app.use(ElementPlus)
 
 app.mount('#app')
 
 app.component('SvgIcon', SvgIcon) // 图片预览
+
 

@@ -172,22 +172,32 @@ let asyncRouter = JSON.parse(sessionStorage.getItem('menuRouters')) ?? [
                         "component":"views/nestedMenuManagement/visitWorkflowConfig/htmlCom/index.vue",
                         "meta": {
                         "title": 'htmlCom'
+                        },
+                        "query":{
+                            "activeName":'first'
                         }
+
                     },
                     {
                         "path": 'javascriptCom',
                         "name": 'javascriptCom',
                         "component":"views/nestedMenuManagement/visitWorkflowConfig/javascriptCom/index.vue",
-                        meta: {
-                        title: 'javascriptCom'
+                        "meta": {
+                        "title": 'javascriptCom'
+                        },
+                        "query":{
+                            "activeName":'second'
                         }
                     },
                     {
                         "path": 'cssCom',
                         "name": 'cssCom',
                         "component":"views/nestedMenuManagement/visitWorkflowConfig/cssCom/index.vue",
-                        meta: {
-                        title: 'cssCom'
+                        "meta": {
+                            "title": 'cssCom'
+                        },
+                        "query":{
+                            "activeName":'third'
                         }
                     }
                    

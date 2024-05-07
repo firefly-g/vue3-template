@@ -1,22 +1,22 @@
 import { defineStore } from 'pinia'
 import router from '@/router/index'
-import { useRouterStore } from './router'
+import { useRouterStore } from '@/pinia/modules/router'
 import { login } from '@/api/user'
 import { ElLoading, ElMessage } from 'element-plus'
 import { ref} from 'vue'
-import { close, start } from '@/utils/nprogress'
+import Nprogress from 'nprogress'
 interface UserInfo{
     nickName: String,
 	headerImg: String,
 }
 type Token=String
-const routerStore = useRouterStore()
 export const useUserStore = defineStore('user', () => {
     const loadingInstance = ref(null)
     const userInfo = ref<UserInfo>({
 		nickName: '',
 		headerImg: '',
 	})
+    const routerStore = useRouterStore()
     const token = ref<Token>(window.localStorage.getItem('token') || '')
     //设置用户信息
     const setUserInfo = (val:UserInfo) => {
@@ -31,7 +31,16 @@ export const useUserStore = defineStore('user', () => {
 	}
     const setToken = (val:Token) => {
 		token.value = val
+        window.localStorage.setItem('token', token.value)
 	}
+    const initMenuRouter=async ()=>{
+        //获取动态router
+        await routerStore.SetAsyncRouter()
+        const asyncRouters = routerStore.asyncRouters
+        asyncRouters.forEach((asyncRouter) => {
+            router.addRoute(asyncRouter)
+        })
+    }
     /* 登录*/
     const LoginIn =async (userInfo) => {
         loadingInstance.value = ElLoading.service({
@@ -50,14 +59,7 @@ export const useUserStore = defineStore('user', () => {
             loadingInstance.value.close()
         }
         loadingInstance.value.close()
-
-        //获取动态router
-        await routerStore.SetAsyncRouter()
-        const asyncRouters = routerStore.asyncRouters
-        //将接口中的路由配置到router中
-        asyncRouters.forEach((asyncRouter) => {
-            router.addRoute(asyncRouter)
-        })
+        await initMenuRouter()
         await router.replace({ name: 'dashboard' })
     }
     /* 登出*/
@@ -72,16 +74,24 @@ export const useUserStore = defineStore('user', () => {
     return{
         LoginIn ,
         LoginOut,
-        userInfo
+        userInfo,
+        token,
+        initMenuRouter
     }
 })
 
 router.beforeEach(async (to, from) => {
-	const routerStore = useRouterStore()
 	const userStore = useUserStore()
+    const routerStore = useRouterStore()
+    console.log(userStore.token,'userStore=====')
 	to.meta.matched = [...to.matched]
-    start()
+    Nprogress.start()
+    if(userStore.token){
+        //获取当前用户的菜单
+        await userStore.initMenuRouter()
+    }
+
 })
 router.afterEach(() => {
-    close()
+    Nprogress.done()
   })
