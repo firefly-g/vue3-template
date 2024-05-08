@@ -4,7 +4,6 @@ import { useRouterStore } from '@/pinia/modules/router'
 import { login } from '@/api/user'
 import { ElLoading, ElMessage } from 'element-plus'
 import { ref} from 'vue'
-import Nprogress from 'nprogress'
 interface UserInfo{
     nickName: String,
 	headerImg: String,
@@ -40,6 +39,7 @@ export const useUserStore = defineStore('user', () => {
         asyncRouters.forEach((asyncRouter) => {
             router.addRoute(asyncRouter)
         })
+        console.log('asyncRouters', asyncRouters)
     }
     /* 登录*/
     const LoginIn =async (userInfo) => {
@@ -80,18 +80,19 @@ export const useUserStore = defineStore('user', () => {
     }
 })
 
-router.beforeEach(async (to, from) => {
-	const userStore = useUserStore()
-    const routerStore = useRouterStore()
-    console.log(userStore.token,'userStore=====')
-	to.meta.matched = [...to.matched]
-    Nprogress.start()
-    if(userStore.token){
-        //获取当前用户的菜单
-        await userStore.initMenuRouter()
-    }
+// router.beforeEach(async (to, from) => {
+// 	const userStore = useUserStore()
+//     const routerStore = useRouterStore()
+//     console.log(to,'路由拦截-触发--------')
+// 	to.meta.matched = [...to.matched]
+//     Nprogress.start()
+//     if(userStore.token){
+//         //获取当前用户的菜单
+//         await userStore.initMenuRouter()
+//         return true
+//     }
 
-})
-router.afterEach(() => {
-    Nprogress.done()
-  })
+// })
+// router.afterEach(() => {
+//     Nprogress.done()
+//   })

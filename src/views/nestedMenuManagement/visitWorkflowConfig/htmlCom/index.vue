@@ -9,7 +9,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref ,onMounted,watch} from "vue";
 import { useRoute, useRouter } from 'vue-router'
 import type { TabsPaneContext } from "element-plus";
 const tabLists=ref(["first","second","third"])
@@ -17,15 +17,22 @@ const activeName = ref("first");
 const router = useRouter()
 const handleClick = (tab: TabsPaneContext, event: Event) => {
   console.log(tab, event);
+  activeName.value=tab.paneName
   router.push({name:'htmlCom',query:{activeName:activeName.value}})
   
 }
+// const updateActiveTab=()=>{
+//   console.log(router.currentRoute,'当前路由信息——————')
+//   activeName.value=router.currentRoute.query?.activeName||'first'
+// }
 // onMounted(()=>{
 //   updateActiveTab()
 // })
-// const updateActiveTab=()=>{
+watch(()=>router.currentRoute.value,(currentRoute)=>{
+  console.log(currentRoute,'监听——————')
+  activeName.value=currentRoute.query?.activeName||'first'
+})
 
-// }
 </script>
 <script lang="ts">
 import first from './components/first.vue'

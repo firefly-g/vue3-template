@@ -1,12 +1,12 @@
 import { createApp ,defineAsyncComponent} from 'vue'
 import { store } from '@/pinia/index'
 import App from './App.vue'
-import router from './router'
+import router from '@/router/index'
 import '@/style/main.scss'
 import '@/style/transition.scss';
 import 'virtual:svg-icons-register'
 import * as ElementPlusIcons from '@element-plus/icons-vue'
-// import '@/utils/routerInterdict.ts'
+import '@/utils/routerInterdict'
 import Nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
 Nprogress.configure({ showSpinner: false, ease: 'ease', speed: 500 })
