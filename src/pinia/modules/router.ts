@@ -155,7 +155,7 @@ let asyncRouter = JSON.parse(sessionStorage.getItem('menuRouters')) ?? [
                     "activeName": "",
                     "keepAlive": true,
                     "defaultMenu": false,
-                    "title": "流程配置",
+                    "title": "动态渲染组件",
                     "icon": "",
                     "closeTab": false,
                     "mainTable": "",
