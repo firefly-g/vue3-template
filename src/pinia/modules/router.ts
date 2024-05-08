@@ -30,16 +30,17 @@ let asyncRouter = JSON.parse(sessionStorage.getItem('menuRouters')) ?? [
         "children": null,
     },
     {
-        "ID": 2,
+        "ID": 39,
+        "traceId": "",
         "parentId": "0",
         "path": "error",
         "name": "error",
         "hidden": false,
         "component": "views/error/index.vue",
-        "sort": 1,
+        "sort": 3,
         "meta": {
             "activeName": "",
-            "keepAlive": false,
+            "keepAlive": true,
             "defaultMenu": false,
             "title": "错误页面",
             "icon": "Setting",
@@ -47,49 +48,64 @@ let asyncRouter = JSON.parse(sessionStorage.getItem('menuRouters')) ?? [
             "mainTable": "",
             "associateTables": ""
         },
+        
+        "menuBtn": null,
+        "menuFiled": null,
+        "menuId": "39",
         "children": [
-            {   
-                "ID": 300,
-                "parentId": "2",
+            {
+                "ID": 45,
+                "traceId": "",
+                "parentId": "40",
                 "path": "notFound",
                 "name": "notFound",
                 "hidden": false,
                 "component": "views/error/notFound/index.vue",
-                "sort": 1,
+                "sort": 0,
                 "meta": {
                     "activeName": "",
-                    "keepAlive": false,
+                    "keepAlive": true,
                     "defaultMenu": false,
                     "title": "404",
-                    "icon": "iconfont icon-home-page",
+                    "icon": "",
                     "closeTab": false,
                     "mainTable": "",
                     "associateTables": ""
                 },
+                
+                "menuBtn": null,
+                "menuFiled": null,
+                "menuId": "41",
                 "children": null,
+                "parameters": [],
             },
             {
-                "ID": 301,
-                "parentId": "2",
+                "ID": 45,
+                "traceId": "",
+                "parentId": "39",
                 "path": "noPermission",
                 "name": "noPermission",
                 "hidden": false,
                 "component": "views/error/noPermission/index.vue",
-                "sort": 1,
+                "sort": 0,
                 "meta": {
                     "activeName": "",
-                    "keepAlive": false,
+                    "keepAlive": true,
                     "defaultMenu": false,
                     "title": "401",
-                    "icon": "iconfont icon-home-page",
+                    "icon": "",
                     "closeTab": false,
                     "mainTable": "",
                     "associateTables": ""
                 },
+                
+                "menuBtn": null,
+                "menuFiled": null,
+                "menuId": "41",
                 "children": null,
+                "parameters": [],
             }
-
-        ],
+        ]
     },
     {
         "ID": 40,

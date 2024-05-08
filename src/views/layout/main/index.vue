@@ -21,7 +21,6 @@ defineOptions({
   name: 'layout',
 })
 const routerStore = useRouterStore()
-console.log(routerStore.keepAliveRouters,'groupMenu下的缓存列表')
 const route = useRoute()
 const router = useRouter()
 const reloadFlag = ref<boolean>(true)
@@ -38,7 +37,6 @@ const reload = async () => {
 			await nextTick()
 			reloadFlag.value = true
 		} else {
-			console.log('开始刷新-')
 			router.push({ name: 'Reload' })
 		}
 	}, 400)
