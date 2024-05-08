@@ -1,13 +1,7 @@
 <template>
 	<div class="flex justify-between items-center h-full">
-		<!-- <div class="left-box" :class="{ 'is-hide ': !showText }">
-			<img class="logo-img" :class="{ 'mr-2': showText }" src="@/assets/logo-mini.png" />
-			<span v-show="showText">景云销</span>
-		</div> -->
-
 		<div class="right-box">
 			<Breadcrumb />
-			
 			<div class="flex items-center">
 				<Operate />
 				<Avatar />
@@ -17,7 +11,6 @@
 </template>
 
 <script setup lang="ts">
-import { emitter, MittType } from '@/utils/bus'
 import { ref, defineAsyncComponent, watch, onMounted } from 'vue'
 
 const showText = ref<boolean>(true)
@@ -25,10 +18,7 @@ const content = ref('')
 const Breadcrumb = defineAsyncComponent(() => import('./components/breadcrub.vue'))
 const Operate = defineAsyncComponent(() => import('./components/operate.vue'))
 const Avatar = defineAsyncComponent(() => import('./components/avatar.vue'))
-//监听菜单的折叠
-// emitter.on(MittType.Collapse, (isCollapse) => {
-// 	showText.value = !isCollapse
-// })
+
 
 
 </script>

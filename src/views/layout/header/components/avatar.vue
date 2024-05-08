@@ -17,14 +17,9 @@
 			</el-dropdown-menu>
 		</template>
 	</el-dropdown>
-
-	<!-- <personalInfo v-if="showPersonalInfo" v-model="showPersonalInfo" />
-	<jobSwitch v-if="showJobSwitch" v-model="showJobSwitch" />
-	<changePassword v-model="showChangePwd" /> -->
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { ElMessageBox } from 'element-plus'
 import { ArrowDown } from '@element-plus/icons-vue'
 import { useUserStore } from '@/pinia/modules/user'
@@ -36,23 +31,21 @@ const userStore = useUserStore()
 const dropdownList = [
 	{ label: '退出登录', value: 'loginOut' },
 ]
-
-const showPersonalInfo = ref<boolean>(false)
-const showJobSwitch = ref<boolean>(false)
-const showChangePwd = ref<boolean>(false)
-
+const logOut=()=>{
+	ElMessageBox.confirm('确认退出登录吗?', '提示', {
+		confirmButtonText: '确认',
+		cancelButtonText: '取消',
+		type: 'warning',
+	})
+	.then(() => {
+		userStore.LoginOut()
+	})
+	.catch(() => {})
+}
 const handleItem = (type) => {
 	switch (type) {
 		case 'loginOut':
-			ElMessageBox.confirm('确认退出登录吗?', '提示', {
-				confirmButtonText: '确认',
-				cancelButtonText: '取消',
-				type: 'warning',
-			})
-				.then(() => {
-					userStore.LoginOut()
-				})
-				.catch(() => {})
+			logOut()
 			break
 		default:
 	}

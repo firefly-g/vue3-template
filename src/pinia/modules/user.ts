@@ -64,11 +64,13 @@ export const useUserStore = defineStore('user', () => {
     }
     /* 登出*/
     const LoginOut=async ()=>{
+        console.log('退出登录--')
         //清除本地缓存
         token.value = ''
 		sessionStorage.clear()
         localStorage.removeItem('token')
         clearUserInfo()
+        console.log('退出登录--')
         await router.push({ name: 'Login', replace: true })
     }
     return{

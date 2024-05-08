@@ -18,16 +18,19 @@ import { onUnmounted, ref } from 'vue'
 import { emitter, MittType } from '@/utils/bus'
 import { RefreshRight } from '@element-plus/icons-vue'
 import Screenfull from './screenfull.vue'
+
 const reload = ref<boolean>(false)
 
 // 刷新
 const handleReload = () => {
 	reload.value = true
+	console.log('开始进行刷新操作---')
 	emitter.emit(MittType.Reload)
 	setTimeout(() => {
 		reload.value = false
 	}, 500)
 }
+
 </script>
 <style scoped lang="scss">
 @import '@/style/main.scss';

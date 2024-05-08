@@ -23,17 +23,9 @@ defineOptions({
 const routerStore = useRouterStore()
 console.log(routerStore.keepAliveRouters,'groupMenu下的缓存列表')
 const route = useRoute()
-console.log(route,'groupMenu下的当前路由')
 const router = useRouter()
 const reloadFlag = ref<boolean>(true)
 let reloadTimer=null
-onMounted(() => {
-	emitter.on(MittType.Reload, reload)
-})
-
-onUnmounted(() => {
-	emitter.off(MittType.Reload)
-})
 
 //刷新
 const reload = async () => {
@@ -46,10 +38,20 @@ const reload = async () => {
 			await nextTick()
 			reloadFlag.value = true
 		} else {
+			console.log('开始刷新-')
 			router.push({ name: 'Reload' })
 		}
 	}, 400)
 }
+
+onMounted(() => {
+	emitter.on(MittType.Reload, reload)
+})
+
+onUnmounted(() => {
+	emitter.off(MittType.Reload)
+})
+
 
 
 
