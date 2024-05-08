@@ -22,7 +22,7 @@ watch(
 	(to, now) => {
     activeTab.value=to?.name
 	},
-	{ immediate: true }
+	{ immediate: true ,deep:true}
 )
 </script>
 

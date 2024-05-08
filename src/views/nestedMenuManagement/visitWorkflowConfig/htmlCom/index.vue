@@ -21,15 +21,8 @@ const handleClick = (tab: TabsPaneContext, event: Event) => {
   router.push({name:'htmlCom',query:{activeName:activeName.value}})
   
 }
-// const updateActiveTab=()=>{
-//   console.log(router.currentRoute,'当前路由信息——————')
-//   activeName.value=router.currentRoute.query?.activeName||'first'
-// }
-// onMounted(()=>{
-//   updateActiveTab()
-// })
+
 watch(()=>router.currentRoute.value,(currentRoute)=>{
-  console.log(currentRoute,'监听——————')
   activeName.value=currentRoute.query?.activeName||'first'
 })
 
