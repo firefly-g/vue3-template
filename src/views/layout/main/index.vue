@@ -15,12 +15,10 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useRouterStore } from '@/pinia/modules/router.ts'
 import { emitter, MittType } from '@/utils/bus'
 defineOptions({
   name: 'layout',
 })
-const routerStore = useRouterStore()
 const route = useRoute()
 const router = useRouter()
 const reloadFlag = ref<boolean>(true)

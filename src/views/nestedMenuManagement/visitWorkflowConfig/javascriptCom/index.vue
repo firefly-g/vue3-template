@@ -1,5 +1,5 @@
 <template>
-    <div class="about">
+    <div class="m-3">
         javascript 组件
     </div>
   </template>

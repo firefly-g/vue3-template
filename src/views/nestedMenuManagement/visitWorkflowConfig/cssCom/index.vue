@@ -1,5 +1,5 @@
 <template>
-    <div class="about">
+    <div class="m-3">
      CSS 组件
     </div>
   </template>

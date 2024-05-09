@@ -6,6 +6,7 @@ router.beforeEach(async (to, from) => {
 	to.meta.matched = [...to.matched]
     Nprogress.remove()
     Nprogress.start()
+    console.log(to,'即将跳转的路由--')
     if(!to.name&&userStore.token){
         //获取当前用户的菜单
         await userStore.initMenuRouter()

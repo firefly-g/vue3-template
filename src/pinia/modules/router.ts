@@ -187,7 +187,7 @@ let asyncRouter = JSON.parse(sessionStorage.getItem('menuRouters')) ?? [
                         "name": 'htmlCom',
                         "component":"views/nestedMenuManagement/visitWorkflowConfig/htmlCom/index.vue",
                         "meta": {
-                        "title": 'htmlCom'
+                        "title": '组件1'
                         },
                         "query":{
                             "activeName":'first'
@@ -199,7 +199,7 @@ let asyncRouter = JSON.parse(sessionStorage.getItem('menuRouters')) ?? [
                         "name": 'javascriptCom',
                         "component":"views/nestedMenuManagement/visitWorkflowConfig/javascriptCom/index.vue",
                         "meta": {
-                        "title": 'javascriptCom'
+                        "title": '组件2'
                         },
                         "query":{
                             "activeName":'second'
@@ -210,7 +210,7 @@ let asyncRouter = JSON.parse(sessionStorage.getItem('menuRouters')) ?? [
                         "name": 'cssCom',
                         "component":"views/nestedMenuManagement/visitWorkflowConfig/cssCom/index.vue",
                         "meta": {
-                            "title": 'cssCom'
+                            "title": '组件3'
                         },
                         "query":{
                             "activeName":'third'
@@ -255,7 +255,7 @@ let asyncRouter = JSON.parse(sessionStorage.getItem('menuRouters')) ?? [
                         "sort": 0,
                         "meta": {
                             "activeName": "",
-                            "keepAlive": false,
+                            "keepAlive": true,
                             "defaultMenu": false,
                             "title": "菜单1-1",
                             "icon": "",
