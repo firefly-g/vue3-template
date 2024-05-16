@@ -9,7 +9,7 @@ const routes = [
 		path: '/login',
 		name: 'Login',
 		component: ()=>import('@/views/login/index.vue'),
-    children:[]
+    	children:[]
 	},
 	{
 		path: '/404',
@@ -22,7 +22,8 @@ const routes = [
 			closeTab: true,
 		},
 		redirect:'/404'
-	},]
+	}
+	]
 const router = createRouter({
 	history: createWebHashHistory(),
 	routes,
