@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-import { ref, onActivated, onDeactivated } from "vue";
+import { ref } from "vue";
 defineOptions({
   name: "dashboard",
 })

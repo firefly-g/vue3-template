@@ -1,9 +1,7 @@
 <template>
     <router-view v-slot="{ Component }">
       <transition mode="out-in" name="fade-transform">
-        <keep-alive :include="routerStore.keepAliveRouters">
-          <component :is="Component" />
-        </keep-alive>
+        <component :is="Component" />
       </transition>
 	</router-view>
   </template>

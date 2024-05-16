@@ -1,12 +1,14 @@
 <template>
-   <el-card class="h-full">
-    <el-alert :title="info" type="success" class="mb-10"/>
-      <el-form class="ml-40">
-        <el-form-item label="图标">
-          <SelectIcon v-model="currentIcon"></SelectIcon>
-        </el-form-item>
-      </el-form>
-    </el-card>
+  <div>
+    <el-card class="h-full">
+      <el-alert :title="info" type="success" class="mb-10"/>
+        <el-form class="ml-40">
+          <el-form-item label="图标">
+            <SelectIcon v-model="currentIcon"></SelectIcon>
+          </el-form-item>
+        </el-form>
+      </el-card>
+  </div>
   </template>
 <script setup lang="ts">
   defineOptions({

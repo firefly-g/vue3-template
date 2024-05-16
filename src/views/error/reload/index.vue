@@ -2,7 +2,7 @@
 	<div></div>
 </template>
 
-<script lang="ts" setup name="Reload">
+<script lang="ts" setup name="reload">
 import { useRouter } from 'vue-router'
 
 const router = useRouter()

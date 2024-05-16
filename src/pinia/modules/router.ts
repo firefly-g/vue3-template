@@ -331,10 +331,10 @@ let asyncRouter = JSON.parse(sessionStorage.getItem('menuRouters')) ?? [
                 "ID": 5,
                 "traceId": "",
                 "parentId": "3",
-                "path": "menu",
-                "name": "menu",
+                "path": "menuManage",
+                "name": "menuManage",
                 "hidden": false,
-                "component": "views/superAdmin/menu/index.vue",
+                "component": "views/superAdmin/menuManage/index.vue",
                 "sort": 2,
                 "meta": {
                     "activeName": "",
@@ -410,13 +410,13 @@ export const useRouterStore=defineStore('router',()=>{
         //加入刷新路由
         asyncRouter.push({
             path: 'reload',
-            name: 'Reload',
+            name: 'reload',
             hidden: true,
             meta: {
                 title: '',
                 closeTab: true,
             },
-            component: 'views/error/reload.vue',
+            component: 'views/error/reload/index.vue',
         })
         
         formatRouter(asyncRouter, routeMap)

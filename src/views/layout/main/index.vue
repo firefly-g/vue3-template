@@ -5,9 +5,10 @@
 		class="content-box"
 	>
 		<transition :duration="500"  mode="out-in" name="fade-transform" >
-			<keep-alive>
+			<keep-alive :include="routerStore.keepAliveRouters">
 				<component :key="route.name" :is="Component" />
 			</keep-alive>
+			
 		</transition>	
 	</router-view>	
 </template>
@@ -16,11 +17,13 @@
 import { onMounted, onUnmounted, ref, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { emitter, MittType } from '@/utils/bus'
+import { useRouterStore } from '@/pinia/modules/router'
 defineOptions({
   name: 'layout',
 })
 const route = useRoute()
 const router = useRouter()
+const routerStore = useRouterStore()
 const reloadFlag = ref<boolean>(true)
 let reloadTimer=null
 
@@ -35,7 +38,7 @@ const reload = async () => {
 			await nextTick()
 			reloadFlag.value = true
 		} else {
-			router.push({ name: 'Reload' })
+			router.push({ name: 'reload' })
 		}
 	}, 400)
 }

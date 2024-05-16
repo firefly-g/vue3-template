@@ -1,5 +1,7 @@
 <template>
-    暂无权限
+  <div>
+    暂无权限页面
+  </div>
   </template>
 
 <script setup lang="ts">
