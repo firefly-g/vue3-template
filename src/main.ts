@@ -9,6 +9,7 @@ import * as ElementPlusIcons from '@element-plus/icons-vue'
 import '@/utils/routerInterdict'
 import Nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
+import '@/mock/index'
 Nprogress.configure({ showSpinner: false, ease: 'ease', speed: 500 })
 Nprogress.start()
 

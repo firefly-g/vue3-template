@@ -33,13 +33,18 @@ export const useUserStore = defineStore('user', () => {
         window.localStorage.setItem('token', token.value)
 	}
     const initMenuRouter=async ()=>{
-        //获取动态router
-        await routerStore.SetAsyncRouter()
-        const asyncRouters = routerStore.asyncRouters
-        asyncRouters.forEach((asyncRouter) => {
-            router.addRoute(asyncRouter)
-        })
-        console.log('asyncRouters', asyncRouters)
+        try {
+            //获取动态router
+            await routerStore.SetAsyncRouter()
+            const asyncRouters = routerStore.asyncRouters
+            asyncRouters.forEach((asyncRouter) => {
+                router.addRoute(asyncRouter)
+            })
+           
+        } catch (error) {
+            console.log('initMenuRouter error :' , error)
+        }
+    
     }
     /* 登录*/
     const LoginIn =async (userInfo) => {
@@ -64,7 +69,6 @@ export const useUserStore = defineStore('user', () => {
     }
     /* 登出*/
     const LoginOut=async ()=>{
-        console.log('退出登录--')
         //清除本地缓存
         token.value = ''
 		sessionStorage.clear()

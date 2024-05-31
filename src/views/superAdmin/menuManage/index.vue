@@ -1,6 +1,14 @@
 <template>
     <el-card class="h-full" :body-style="{ display: 'flex', flexDirection: 'column', height: '100%', padding: '12px' }">
-        <el-table class="flex-1" :data="tableData" row-key="ID" :border="true">
+        <el-row class="mb-3">
+			<el-button type="primary" @click="addSubMenu(0)">
+				<template #icon>
+					<SvgIcon name="Plus" />
+				</template>
+				新增根菜单
+			</el-button>
+		</el-row>
+		<el-table class="flex-1" :data="tableData" row-key="ID" :border="true">
 			<el-table-column align="left" label="ID" min-width="100" prop="ID" />
 			<el-table-column align="left" label="展示名称" min-width="120" prop="authorityName">
 				<template #default="scope">
@@ -26,14 +34,14 @@
 			<el-table-column align="left" label="文件路径" min-width="360" prop="component" />
 			<el-table-column align="left" fixed="right" label="操作" width="300">
 				<template #default="scope">
-					<el-button type="primary" link icon="plus" @click="addMenu(scope.row)">添加子菜单</el-button>
-					<el-button type="primary" link icon="edit">编辑</el-button>
-					<el-button type="primary" link icon="delete">删除</el-button>
+					<el-button type="primary" link icon="plus" @click="addSubMenu(scope.row.ID)">添加子菜单</el-button>
+					<el-button type="primary" link icon="edit" @click="handleEditMenu(scope.row)">编辑</el-button>
+					<el-button type="primary" link icon="delete" @click="handleDeleteMenu(scope.row.ID)">删除</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
         <!-- 新增菜单弹框 -->
-        <el-dialog v-model="dialogFormVisible"  :title="dialogTitle">
+        <el-dialog v-model="dialogFormVisible" :before-close="handleClose" :title="dialogTitle">
             <el-form
                 ref="menuForm"
                 :inline="true"
@@ -107,9 +115,8 @@
 </template>
 
 <script setup lang="tsx">
-import { ref,computed,defineAsyncComponent,reactive ,toRaw} from 'vue'
-import { useRouterStore } from '@/pinia/modules/router'
-import { emitter, MittType } from '@/utils/bus'
+import { onMounted,ref,defineAsyncComponent,reactive ,toRaw} from 'vue'
+import {getMenu,addMenu,deleteMenu,editMenu} from '@/api/menu'
 const SelectIcon = defineAsyncComponent(() => import("@/components/selectIcon/index.vue"))
 defineOptions({
     name: "menu"
@@ -137,10 +144,8 @@ interface MenuType{
 
 }
 const menuForm = ref(null)
-const routerStore = useRouterStore()
-const tableData =computed(() => {
-	return routerStore.asyncRouters?.[0]?.children
-})
+let tableData=ref([])
+
 const form = ref<MenuType>({
 	ID: 0,
 	path: '',
@@ -177,6 +182,14 @@ const rules = reactive({
 	component: [{ required: true, message: '请输入文件路径', trigger: 'blur' }],
 	'meta.title': [{ required: true, message: '请输入菜单展示名称', trigger: 'blur' }],
 })
+onMounted(async()=>{
+	await getTableData()
+})
+
+const handleClose = (done) => {
+	initForm()
+	done()
+}
 const setMenuOptions = (menuData, optionsData, disabled) => {
 	menuData &&
 		menuData.forEach((item) => {
@@ -221,25 +234,79 @@ const initForm = () => {
         children:[]
 	}
 }
-/**添加子菜单弹框 */
-const addMenu = (data) => {
-    form.value.parentId = String(data?.ID)
+//获取列表
+const getTableData = async () => {
+	try {
+		const res =await getMenu()
+		if(res.code===0){
+			tableData.value=res?.data
+		}
+	} catch (error) {
+		
+	}
+}
+//添加子菜单弹框 
+const addSubMenu = (parentId) => {
+	dialogTitle.value = '新增菜单'
+	isEdit.value = false
+    form.value.parentId = String(parentId)
     setOptions()
     dialogFormVisible.value = true
 }
-/**关闭弹窗 */
+//关闭弹窗 
 const closeDialog = () => {
 	initForm()
 	dialogFormVisible.value = false
 }
-/**确定 */
-const enterDialog =()=>{
+//确定 
+const enterDialog = async()=>{
     console.log(form,'form')
-    //此处为本地模拟，实际开发可自己修改
-    emitter.emit(MittType.SetMenuConfig, {type:'add',data:toRaw(form.value)})
-    dialogFormVisible.value = false
+	menuForm.value.validate(async (valid) => {
+		if(valid){
+			//用mockjs模拟数据
+			let res
+				if (isEdit.value) {
+					res=await editMenu(toRaw(form.value))
+				}else{
+					res=await addMenu(toRaw(form.value))
+				}
+				if (res.code === 0) {
+					ElMessage({
+						type: 'success',
+						message:res?.data?.msg,
+					})
+					getTableData()
+				}
+				initForm()
+				dialogFormVisible.value = false
+		}
+	})
 }
 const changeName = () => {
 	form.value.path = form.value.name
+}
+//删除菜单
+const handleDeleteMenu=(ID)=>{
+	ElMessageBox.confirm('此操作将永久删除所有角色下该菜单, 是否继续?', '提示', {
+		confirmButtonText: '确定',
+		cancelButtonText: '取消',
+		type: 'warning',
+	}).then(async()=>{
+		const res=await deleteMenu({ID})
+		if (res.code === 0) {
+			ElMessage({
+				type: 'success',
+				message: res?.data?.msg,
+			})
+		}
+	})
+}
+//编辑菜单
+const handleEditMenu=(data)=>{
+	form.value=data
+	dialogTitle.value = '编辑菜单'
+	isEdit.value = true
+	dialogFormVisible.value = true
+
 }
 </script>

@@ -1,8 +1,9 @@
 import {service} from '@/utils/request'
+
 // 用户登录
 export const login = (data) => {
 	return service.request({
-		url: '/base/login',
+		url: '/login',
 		method: 'post',
 		data,
 	})
