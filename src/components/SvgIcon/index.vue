@@ -1,6 +1,7 @@
 <template>
-	<img v-if="outputType==='img'" :src="props.name" :style="iconStyle"/>
-	<component v-else-if="outputType==='element'"  :is="props.name" :class="[props.name]" :style="iconStyle"></component>
+	<img v-if="outputType==='img'" :src="getIconName" :style="iconStyle"/>
+	<component v-else-if="outputType==='element'" :is="getIconName" :style="iconStyle"></component>
+	<i v-else-if="outputType==='ali'" :class="getIconName" :style="iconStyle" />
 	<svg v-else aria-hidden="true" class="svg-icon" :fill="props.color" :width="width" :height="height">
 		<use :xlink:href="symbolId" :fill="props.color" />
 	</svg>
@@ -36,9 +37,12 @@
     	return 'img'
   	}
 	//图标首字母大写的默认为element plus 图标
-	else if (/[A-Z]/.test(props.name.charAt(0))) {
+	else if (props?.name?.startsWith('ele-')) {
 		return 'element'
-	}else{
+	}else if(props?.name?.startsWith('iconfont')){
+		return 'ali'
+	}
+	else {
 		return 'svg'
 	}
   })
@@ -49,8 +53,14 @@
 		...{height: props.height ? `${props.height}px` :`${props.size}px`},
 		'display': 'inline-block',
 		'font-size': `${props.size}px`,
-		'color': `${props.color}`
+		'color': `${props.color}?${props.color}:'#409efc'`
 	}
+  })
+  const getIconName=computed(()=>{
+	if (props?.name?.startsWith('icon-') && props?.name?.indexOf('iconfont') === -1) {
+		return `iconfont ${props?.name}`
+	}
+	return props?.name
   })
   const symbolId = computed(() => `${props.name}`)
   </script>
