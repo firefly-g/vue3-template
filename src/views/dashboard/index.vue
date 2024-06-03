@@ -16,21 +16,9 @@ defineOptions({
   name: "dashboard",
 })
 onMounted(() => {
-	initFontIconData('ali')
+	
 })
-const initFontIconData = async (name: string) => {
-  if (name === 'ali') {
-		// 阿里字体图标使用 `iconfont xxx`
-		await initIconfont.ali().then((res: any) => {
-      console.log( res ,'阿里字体图标')
-		})
-	} else if (name === 'ele') {
-		// element plus 图标
-		await initIconfont.ele().then((res: any) => {
-      console.log( res ,'element plus 字体图标')
-		})
-	}
-}
+
 </script>
 
 <style></style>

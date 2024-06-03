@@ -1,14 +1,12 @@
 <template>
 	<el-menu-item v-if="!isHide" :index="routerInfo.name">
-		<SvgIcon v-if="routerInfo.meta?.icon" :name="routerInfo.meta?.icon"></SvgIcon>
+		<SvgIcon v-if="routerInfo.meta?.icon" :name="routerInfo.meta?.icon" :size="18" color="#fff" style="margin-right: 5px;"></SvgIcon>
 		<span>{{ routerInfo.meta.title }}</span>
 	</el-menu-item>
 </template>
 
 <script setup lang="ts">
-import { computed,defineAsyncComponent } from 'vue'
-const SvgIcon = defineAsyncComponent(() => import("@/components/SvgIcon/index.vue"))
-
+import { computed } from 'vue'
 interface Props {
 	routerInfo: any
 	collapse?: boolean
@@ -19,6 +17,7 @@ const props = defineProps<Props>()
 const isHide = computed(() => {
 	return props.routerInfo?.hidden
 })
+
 </script>
 
 <style lang="scss" scoped>

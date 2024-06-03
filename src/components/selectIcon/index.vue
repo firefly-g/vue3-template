@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import { ref,reactive,onMounted,defineAsyncComponent } from 'vue'
-import { ComponentInternalInstance, defineEmits, defineProps, getCurrentInstance } from 'vue'
+import { defineEmits, defineProps } from 'vue'
 import type { TabsPaneContext } from 'element-plus'
 import initIconfont from '@/utils/getStyleSheets'
 const IconList = defineAsyncComponent(() => import('@/components/selectIcon/list.vue'))
 
-const { appContext: {app: { config: { globalProperties } } } } = getCurrentInstance() as ComponentInternalInstance
-// console.log(globalProperties,'globalProperties');
- 
 interface Props {
   modelValue: string
 }
@@ -19,7 +16,7 @@ const state = reactive({
     ele: [],
   }
 })
-const emits = defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue'])
 
 onMounted(() => {
 	initFontIconData(initFontIconName())
@@ -50,25 +47,29 @@ const initFontIconName = () => {
 	let name = 'ali'
 	if (props.modelValue!.indexOf('iconfont') > -1) name = 'ali'
 	else if (props.modelValue!.indexOf('ele-') > -1) name = 'ele'
-	// 初始化 tab 高亮回显
 	state.fontIconTabActive = name
 	return name
+}
+const onSelect = (v: string) => {
+	emit('update:modelValue', v)
 }
 </script>
  
 <template>
   <el-popover trigger="focus" :width="500">
     <template #reference>
-      <el-button :icon="modelValue">{{ modelValue }}</el-button>
+      <el-button >
+        <SvgIcon :name="modelValue"/>
+      </el-button>
     </template>
     <div class="">
       <div class="icon-selector-warp-title">请选择图标</div>
       <el-tabs v-model="state.fontIconTabActive" class="demo-tabs" @tab-click="handleClick">
         <el-tab-pane label="ali" name="ali">
-          <IconList :list="state.fontIconList.ali"/>
+          <IconList :list="state.fontIconList.ali" @get-icon="onSelect" :selectedIcon="modelValue"/>
         </el-tab-pane>
         <el-tab-pane label="ele" name="ele">
-          <IconList :list="state.fontIconList.ele"/>
+          <IconList :list="state.fontIconList.ele" @get-icon="onSelect" :selectedIcon="modelValue"/>
         </el-tab-pane>
       </el-tabs>
     </div>

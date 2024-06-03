@@ -16,7 +16,7 @@
   });
   import SelectIcon from "@/components/selectIcon/index.vue"
   import {ref} from 'vue'
-  const currentIcon = ref<string>('Setting')
+  const currentIcon = ref<string>('ele-Setting')
   const info='定义了一个基于element plus 图标的选择组件 用于目录前面的icon'
 </script>
   

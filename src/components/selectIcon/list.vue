@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const emit = defineEmits(['get-icon'])
 const props = defineProps({
 	// 图标列表数据
 	list: {
@@ -9,9 +10,16 @@ const props = defineProps({
 	empty: {
 		type: String,
 		default: () => '无相关图标',
-	}
+	},
+    selectedIcon:{
+        type: String,
+		default: () => '',
+    }
 })
-
+// 点击icon 图标
+const onColClick = (v: unknown | string) => {
+	emit('get-icon', v)
+}
 </script>
 
 
@@ -20,8 +28,8 @@ const props = defineProps({
     <el-scrollbar ref="selectorScrollbarRef">
         <el-row :gutter="10" v-if="props.list.length > 0">
             <el-col :xs="6" :sm="4" :md="4" :lg="4" :xl="4" v-for="(v, k) in list" :key="k" @click="onColClick(v)">
-                <div class="icon-selector-warp-item">
-                    <SvgIcon :name="v" />
+                <div class="icon-selector-warp-item" :class="{ 'icon-selector-active': selectedIcon === v }">
+                    <SvgIcon :name="v"/>
                 </div>
             </el-col>
         </el-row>

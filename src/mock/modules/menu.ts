@@ -14,7 +14,7 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
             "keepAlive": true,
             "defaultMenu": false,
             "title": "首页",
-            "icon": "CaretBottom",
+            "icon": "ele-CaretBottom",
             "closeTab": false,
             "mainTable": "",
             "associateTables": ""
@@ -39,7 +39,7 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
             "keepAlive": true,
             "defaultMenu": false,
             "title": "错误页面",
-            "icon": "Setting",
+            "icon": "ele-Setting",
             "closeTab": false,
             "mainTable": "",
             "associateTables": ""
@@ -117,7 +117,7 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
             "keepAlive": true,
             "defaultMenu": false,
             "title": "嵌套路由",
-            "icon": "Money",
+            "icon": "ele-Money",
             "closeTab": false,
             "mainTable": "",
             "associateTables": ""
@@ -230,7 +230,7 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
                     "keepAlive": false,
                     "defaultMenu": false,
                     "title": "菜单Grpoup",
-                    "icon": "Notebook",
+                    "icon": "ele-Notebook",
                     "closeTab": false,
                     "mainTable": "",
                     "associateTables": ""
@@ -313,7 +313,7 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
             "keepAlive": false,
             "defaultMenu": false,
             "title": "超级管理员",
-            "icon": "Avatar",
+            "icon": "ele-Avatar",
             "closeTab": false,
             "mainTable": "",
             "associateTables": ""
