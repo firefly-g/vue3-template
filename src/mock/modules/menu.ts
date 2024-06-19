@@ -11,7 +11,7 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
         "sort": 1,
         "meta": {
             "activeName": "",
-            "keepAlive": true,
+            "keepAlive": false,
             "defaultMenu": false,
             "title": "首页",
             "icon": "ele-CaretBottom",
@@ -36,7 +36,7 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
         "sort": 3,
         "meta": {
             "activeName": "",
-            "keepAlive": true,
+            "keepAlive": false,
             "defaultMenu": false,
             "title": "错误页面",
             "icon": "ele-Setting",
@@ -86,7 +86,7 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
                 "sort": 0,
                 "meta": {
                     "activeName": "",
-                    "keepAlive": true,
+                    "keepAlive": false,
                     "defaultMenu": false,
                     "title": "401",
                     "icon": "",
@@ -114,7 +114,7 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
         "sort": 3,
         "meta": {
             "activeName": "",
-            "keepAlive": true,
+            "keepAlive": false,
             "defaultMenu": false,
             "title": "嵌套路由",
             "icon": "ele-Money",
@@ -138,7 +138,7 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
                 "sort": 0,
                 "meta": {
                     "activeName": "",
-                    "keepAlive": true,
+                    "keepAlive": false,
                     "defaultMenu": false,
                     "title": "图标",
                     "icon": "",
@@ -165,7 +165,7 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
                 "sort": 0,
                 "meta": {
                     "activeName": "",
-                    "keepAlive": true,
+                    "keepAlive": false,
                     "defaultMenu": false,
                     "title": "动态渲染组件",
                     "icon": "",

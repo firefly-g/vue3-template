@@ -28,7 +28,6 @@ onMounted(()=>{
 
 <style lang="scss" scoped>
 :deep(.el-sub-menu__title) {
-	vertical-align: middle !important;
 	&:hover {
 		color: var(--el-color-primary);
 	}

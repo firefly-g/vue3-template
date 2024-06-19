@@ -16,13 +16,13 @@ const routes = [
 		name: '404',
 		component: () => import('@/views/error/notFound/index.vue'),
 	},
-	{
-		path: '/:catchAll(.*)',
-		meta: {
-			closeTab: true,
-		},
-		redirect:'/404'
-	}
+	// {
+	// 	path: '/:catchAll(.*)',
+	// 	meta: {
+	// 		closeTab: true,
+	// 	},
+	// 	redirect:'/404'
+	// }
 	]
 const router = createRouter({
 	history: createWebHashHistory(),

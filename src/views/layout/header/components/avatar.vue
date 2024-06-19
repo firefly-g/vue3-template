@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { ElMessageBox } from 'element-plus'
+// import { ElMessageBox } from 'element-plus'
 import { ArrowDown } from '@element-plus/icons-vue'
 import { useUserStore } from '@/pinia/modules/user'
 

@@ -20,7 +20,6 @@ const emit = defineEmits(['update:modelValue'])
 
 onMounted(() => {
 	initFontIconData(initFontIconName())
-  console.log(state.fontIconList,'fontIconList')
 })
 //获取icon列表
 const initFontIconData = async (name: string) => {

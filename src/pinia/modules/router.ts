@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from 'vue'
 import { asyncRouterHandle } from '@/utils/asyncRouter'
-import { emitter, MittType } from '@/utils/bus'
 import {getMenu} from '@/api/menu'
 
 //1.调用接口，格式化数据
@@ -22,8 +21,8 @@ let baseRouter = [
 export const useRouterStore=defineStore('router',()=>{
     let keepAliveRouters = ref(<string>[])
     const asyncRouters = ref(<any>[])
-    let flatRouters = ref(<any>[])
     let routeMap = {}
+    const asyncRouterFlag = ref(0)
 
     const KeepAliveFilter = (router) => {
         router&&router.forEach(item=>{
@@ -40,16 +39,9 @@ export const useRouterStore=defineStore('router',()=>{
             routes.forEach((item) => {
                 item.meta.btns = item.btns
                 item.meta.hidden = item.hidden
-                if (item.meta.defaultMenu === true) {
-                    notLayoutRouterArr.push({
-                        ...item,
-                        path: `/${item.path}`,
-                    })
-                } else {
-                    routeMap[item.name] = item
-                    if (item.children && item.children.length > 0) {
-                        formatRouter(item.children, routeMap)
-                    }
+                routeMap[item.name] = item
+                if (item.children && item.children.length > 0) {
+                    formatRouter(item.children, routeMap)
                 }
             })
     }
@@ -85,41 +77,10 @@ export const useRouterStore=defineStore('router',()=>{
             console.log('获取动态路由error',error)
         }
     }
-    //更新菜单管理下路由配置
-    // const updateRouters=(res:{type:string,data:object})=>{
-    //     if(res.type=='add'){
-    //         if(res.data?.parentId==='0'){
-    //             baseRouter[0]?.children.push(res.data) 
-    //         }else{
-    //             matchParentMenu(baseRouter[0],res.data)
-    //         }
-    //     }
-    //     sessionStorage.setItem('menuRouters', JSON.stringify(baseRouter))
-    //     // asyncRouterHandle(baseRouter)
-    //     // asyncRouters.value = baseRouter
-    // }
-    //匹配所属父级路由
-    // const matchParentMenu=(routers,data)=>{
-    //     routers.children&&routers.children.forEach(item=>{
-    //         if(data?.parentId==='0'){
-    //             routers.children.push(item.name)
-    //         }else{
-    //             if(item.ID===Number(data?.parentId)){
-    //                 item.children=item.children?[...item.children,data]:[data]
-    //             }else if(item.ID!==Number(data?.parentId)&&item.children&& item.children.length > 0){
-    //                 matchParentMenu(item,data)
-    //             }
-    //         }
-    //     })
-    // }
-    // emitter.on(MittType.SetMenuConfig, updateRouters)
-
     return {
         routeMap,
         asyncRouters,
-        flatRouters,
         SetAsyncRouter,
-        keepAliveRouters,
-        // updateRouters
+        keepAliveRouters
     }
 })

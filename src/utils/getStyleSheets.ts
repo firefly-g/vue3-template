@@ -33,7 +33,6 @@ const getElementPlusIconfont = () => {
 			for (const i in icons) {
 				sheetsIconList.push(`ele-${icons[i].name}`)
 			}
-            console.log(sheetsIconList,'/ element plus 字体图标列表')
 			if (sheetsIconList.length > 0) resolve(sheetsIconList)
 			else reject('未获取到值，请刷新重试')
 		})

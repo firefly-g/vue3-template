@@ -3,7 +3,7 @@
         <el-row class="mb-3">
 			<el-button type="primary" @click="addSubMenu(0)">
 				<template #icon>
-					<SvgIcon name="Plus" />
+					<SvgIcon name="ele-Plus" color="#fff"/>
 				</template>
 				新增根菜单
 			</el-button>
