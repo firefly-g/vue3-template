@@ -310,3 +310,15 @@ const handleEditMenu=(data)=>{
 
 }
 </script>
+<style scoped lang="scss">
+.warning {
+	color: #dc143c;
+}
+.icon-column {
+	display: flex;
+	align-items: center;
+	.el-icon {
+		margin-right: 8px;
+	}
+}
+</style>

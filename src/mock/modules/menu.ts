@@ -428,8 +428,9 @@ const addMenu=(options:object)=>{
 
 //删除菜单
 const deleteMenu=(options:object)=>{
+    
     const body=JSON.parse(options.body)
-    matchParentMenu(menuData,{parentId:body?.ID},'delete')
+    matchParentMenu(menuData,{ID:body?.ID},'delete')
     saveMenuData()
     console.log('接口返回：',menuData)
     return {
