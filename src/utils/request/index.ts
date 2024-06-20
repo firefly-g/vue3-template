@@ -36,7 +36,6 @@ class Request{
     private  httpInterceptorsRequest():void{
         Request.axiosInstance.interceptors.request.use(
             async(config:RequestConfig):Promise<any>=>{
-                console.log(config,'config 调用接口----')
                 return config
                 // if(typeof config.beforeRequestCallback==="function"){
                 //     config.beforeRequestCallback(config)

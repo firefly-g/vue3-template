@@ -1,5 +1,5 @@
 <template>
-    <el-card class="h-full" :body-style="{ display: 'flex', flexDirection: 'column', height: '100%', padding: '12px' }">
+    <el-card class="h-full" :body-style="{ display: 'flex', flexDirection: 'column', height: '100%', padding: '12px',boxSizing: 'border-box' }">
         <el-row class="mb-3">
 			<el-button type="primary" @click="addSubMenu(0)">
 				<template #icon>
@@ -8,7 +8,7 @@
 				新增根菜单
 			</el-button>
 		</el-row>
-		<el-table class="flex-1" :data="tableData" row-key="ID" :border="true">
+		<el-table class="" :data="tableData" row-key="ID" :border="true">
 			<el-table-column align="left" label="ID" min-width="100" prop="ID" />
 			<el-table-column align="left" label="展示名称" min-width="120" prop="authorityName">
 				<template #default="scope">

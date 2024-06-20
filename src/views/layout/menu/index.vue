@@ -1,27 +1,29 @@
 <template>
-	<div class="main-menu">
-		<el-scrollbar class="flex-1" view-class="overflow-hidden">
-			<el-menu
-				:collapse="isCollapse"
-				background-color="#545c64"
-				text-color="#fff"
-				:default-active="menuActive"
-				:collapse-transition="false"
-				@select="selectMenu"
-			>
-				<menuChild :data="menuData" />
-			</el-menu>
-			
-		</el-scrollbar>
-        <div class="menu-footer">
-			<div class="footer-item">
-				<el-icon @click="handleCollapse">
-					<Expand v-if="isCollapse" />
-					<Fold v-else />
-				</el-icon>
+	<!-- <div class="menu-box"> -->
+		<div class="main-menu">
+			<el-scrollbar class="flex-1" view-class="overflow-hidden">
+				<el-menu
+					:collapse="isCollapse"
+					background-color="#545c64"
+					text-color="#fff"
+					:default-active="menuActive"
+					:collapse-transition="false"
+					@select="selectMenu"
+				>
+					<menuChild :data="menuData" />
+				</el-menu>
+				
+			</el-scrollbar>
+			<div class="menu-footer">
+				<div class="footer-item">
+					<el-icon @click="handleCollapse">
+						<Expand v-if="isCollapse" />
+						<Fold v-else />
+					</el-icon>
+				</div>
 			</div>
 		</div>
-	</div>
+	<!-- </div> -->
 </template>
 
 <script setup lang="ts">
@@ -62,7 +64,6 @@ const selectMenu = (index) => {
 	if (index.indexOf('http://') > -1 || index.indexOf('https://') > -1) {
 		window.open(index)
 	} else {
-		console.log( index,'{ name: index, query, p }之后')
 		router.push({ name: index, query, params })
        
 	}
@@ -70,6 +71,14 @@ const selectMenu = (index) => {
 </script>
 
 <style lang="scss" scoped>
+.menu-box{
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	display: flex;
+	z-index: 999;
+	user-select: none;
+}
 .main-menu {
 	display: flex;
 	flex-direction: column;

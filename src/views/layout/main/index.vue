@@ -73,5 +73,7 @@ fade-transform
   opacity: 0;
   transform: translateX(30px);
 }
-
+.content-box {
+	// height: 100%;
+}
 </style>
