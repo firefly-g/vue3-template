@@ -3,7 +3,7 @@
 	<i v-else-if="outputType==='element'" class="el-icon">
 		<component :is="getIconName" :style="iconStyle"></component>
 	</i>
-	<i v-else-if="outputType==='ali'" :class="getIconName" :style="iconStyle" />
+	<i v-else-if="outputType==='ali'" :class="getIconName" :style="iconStyle"/>
 	<svg v-else aria-hidden="true" class="svg-icon" :fill="props.color" :width="width" :height="height">
 		<use :xlink:href="symbolId" :fill="props.color" />
 	</svg>
@@ -53,7 +53,8 @@
 	let style={
 		'display': 'inline-block',
 		'font-size': `${props.size}px`,
-		'color': `${props.color}`
+		'color': `${props.color}`,
+		'text-align': 'center',
 	}
 	if(outputType==='img'){
 		style.width=props.width ? `${props.width}px` :`${props.size}px`

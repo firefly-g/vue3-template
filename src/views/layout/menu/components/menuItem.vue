@@ -1,6 +1,6 @@
 <template>
 	<el-menu-item v-if="!isHide" :index="routerInfo.name">
-		<SvgIcon v-if="routerInfo.meta?.icon" :name="routerInfo.meta?.icon" :size="18" color="#fff" style="margin-right: 5px;"></SvgIcon>
+		<SvgIcon v-if="routerInfo.meta?.icon" :name="routerInfo.meta?.icon" :size="18" color="#fff"></SvgIcon>
 		<span>{{ routerInfo.meta.title }}</span>
 	</el-menu-item>
 </template>

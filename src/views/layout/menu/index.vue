@@ -1,8 +1,9 @@
 <template>
 	<!-- <div class="menu-box"> -->
 		<div class="main-menu">
-			<el-scrollbar class="flex-1" view-class="overflow-hidden">
+			<el-scrollbar class="flex-1">
 				<el-menu
+					class="el-menu-box"
 					:collapse="isCollapse"
 					background-color="#545c64"
 					text-color="#fff"
@@ -82,10 +83,11 @@ const selectMenu = (index) => {
 .main-menu {
 	display: flex;
 	flex-direction: column;
-	height: 100vh;
+	height: 100%;
 	background-color: #545c64;
 	color: #ffffff;
 }
+
 .menu-footer {
 	display: flex;
 	align-items: center;
@@ -97,4 +99,33 @@ const selectMenu = (index) => {
 		cursor: pointer;
 	}
 }
+:deep(.el-menu--collapse) {
+	.el-menu-item [class^='iconfont'] {
+		margin: 0;
+	}
+}
+
+:deep(.el-menu) {
+	.el-menu-item,
+	.el-sub-menu__title {
+		[class^='iconfont'] {
+			display: inline-block;
+			margin-right: 5px;
+			width: var(--el-menu-icon-width);
+			height: 1em;
+			line-height: 1em;
+			text-align: center;
+			font-size: 18px;
+			vertical-align: middle;
+		}
+	}
+
+}
+// .el-menu-box {
+// 	width: 400px;
+// }
+// .el-menu-box:not(.el-menu--collapse) {
+// 	width: 100px;
+	
+// }
 </style>
