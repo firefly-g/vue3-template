@@ -3,6 +3,7 @@ import router from '@/router/index'
 import { useRouterStore } from '@/pinia/modules/router'
 import { login } from '@/api/user'
 import { ElLoading, ElMessage } from 'element-plus'
+import { getRedirectUrl } from '@/utils/util'
 import { ref} from 'vue'
 interface UserInfo{
     nickName: String,
@@ -40,14 +41,17 @@ export const useUserStore = defineStore('user', () => {
             asyncRouters.forEach((asyncRouter) => {
                 router.addRoute(asyncRouter)
             })
-           
+            return true
         } catch (error) {
             console.log('initMenuRouter error :' , error)
+            return false
         }
     
     }
     /* 登录*/
     const LoginIn =async (userInfo) => {
+        const tocancleList=['login','notFound','noPermission']
+        let pathName='dashboard'
         loadingInstance.value = ElLoading.service({
             fullscreen: true,
             text: '登录中，请稍候...',
@@ -61,11 +65,20 @@ export const useUserStore = defineStore('user', () => {
                 setToken(res.data.token)
             }
         } catch (error) {
-            loadingInstance.value.close()
+            console.log(error,'登录异常')
         }
         loadingInstance.value.close()
         await initMenuRouter()
-        await router.replace({ name: 'dashboard' })
+        //当前登录页是由其他页面重定向来的 登录成功后跳转对应页面 
+        const redictUrl=getRedirectUrl()
+        if(redictUrl){
+            const segments = redictUrl.split('/');
+            let toPath=segments[segments?.length - 1]
+            if(!tocancleList.includes(toPath)){
+                pathName=toPath
+            }
+        }
+        await router.replace({ name: pathName })
     }
     /* 登出*/
     const LoginOut=async ()=>{
@@ -74,31 +87,21 @@ export const useUserStore = defineStore('user', () => {
 		sessionStorage.clear()
         localStorage.removeItem('token')
         clearUserInfo()
-        console.log('退出登录--')
+        routerStore.clearAsyncRouters()
         await router.push({ name: 'Login', replace: true })
     }
+    /* 清理数据 */
+	const ClearStorage = async () => {
+		token.value = ''
+		sessionStorage.clear()
+		localStorage.clear()
+	}
     return{
         LoginIn ,
         LoginOut,
         userInfo,
         token,
-        initMenuRouter
+        initMenuRouter,
+        ClearStorage
     }
 })
-
-// router.beforeEach(async (to, from) => {
-// 	const userStore = useUserStore()
-//     const routerStore = useRouterStore()
-//     console.log(to,'路由拦截-触发--------')
-// 	to.meta.matched = [...to.matched]
-//     Nprogress.start()
-//     if(userStore.token){
-//         //获取当前用户的菜单
-//         await userStore.initMenuRouter()
-//         return true
-//     }
-
-// })
-// router.afterEach(() => {
-//     Nprogress.done()
-//   })

@@ -17,9 +17,7 @@
   import { useRouterStore } from '@/pinia/modules/router'
   import { useRoute, useRouter } from 'vue-router'
   const routerStore = useRouterStore()
-  console.log(routerStore.keepAliveRouters,'routerStore.keepAliveRouters___')
   const route = useRoute()
-  console.log(route,'nestedMenuManagement下的路由路径·')
 </script>
 
 <style>

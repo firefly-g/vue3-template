@@ -19,7 +19,7 @@ let baseRouter = [
     },
 ]
 export const useRouterStore=defineStore('router',()=>{
-    let keepAliveRouters = ref(<string>[])
+    let keepAliveRouters = ref([])
     const asyncRouters = ref(<any>[])
     let routeMap = {}
     const asyncRouterFlag = ref(0)
@@ -48,6 +48,7 @@ export const useRouterStore=defineStore('router',()=>{
     //获取动态路由
     const SetAsyncRouter=async()=>{
         try {
+            asyncRouterFlag.value++
             //调用路由接口
             const res=await getMenu()
             if(res?.code!==0) return
@@ -77,10 +78,18 @@ export const useRouterStore=defineStore('router',()=>{
             console.log('获取动态路由error',error)
         }
     }
+    // 清除当前职位账号的权限路由
+	const clearAsyncRouters = () => {
+		asyncRouters.value[0].children = []
+		keepAliveRouters.value = []
+		asyncRouterFlag.value = 0
+	}
     return {
         routeMap,
         asyncRouters,
         SetAsyncRouter,
-        keepAliveRouters
+        keepAliveRouters,
+        clearAsyncRouters,
+        asyncRouterFlag
     }
 })
