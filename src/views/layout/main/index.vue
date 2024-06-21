@@ -33,7 +33,6 @@ const reload = async () => {
 		window.clearTimeout(reloadTimer)
 	}
 	reloadTimer = window.setTimeout(async () => {
-		console.log('route.meta.keepAlive',route.meta.keepAlive)
 		// if (route.meta.keepAlive) {
 		// 	reloadFlag.value = false
 		// 	await nextTick()
