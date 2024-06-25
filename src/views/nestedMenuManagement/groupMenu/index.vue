@@ -1,6 +1,6 @@
 <template>
-  <!-- <div>
-    这是公共父路由 -->
+  <div>
+    这是公共父路由
     <router-view v-slot="{ Component }">
       <transition mode="out-in" name="fade-transform">
         <keep-alive :include="routerStore.keepAliveRouters">
@@ -8,7 +8,7 @@
         </keep-alive>
       </transition>
 	  </router-view>
-  <!-- </div> -->
+  </div>
   </template>
   <script setup lang="ts">
   import { useRouterStore } from '@/pinia/modules/router'
@@ -16,7 +16,6 @@
     name: 'groupMenu'
   });
   const routerStore = useRouterStore()
-  console.log(routerStore.keepAliveRouters,'routerStore.keepAliveRouters')
 
   </script>
   

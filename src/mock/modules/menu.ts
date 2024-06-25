@@ -119,7 +119,7 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
         "sort": 3,
         "meta": {
             "activeName": "",
-            "keepAlive": false,
+            "keepAlive": true,
             "defaultMenu": false,
             "title": "嵌套路由",
             "icon": "ele-Money",
@@ -238,7 +238,7 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
                 "sort": 0,
                 "meta": {
                     "activeName": "",
-                    "keepAlive": false,
+                    "keepAlive": true,
                     "defaultMenu": false,
                     "title": "菜单Grpoup",
                     "icon": "ele-Notebook",

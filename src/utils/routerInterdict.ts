@@ -11,7 +11,7 @@ router.beforeEach(async (to, from) => {
 	const userStore = useUserStore()
 	to.meta.matched = [...to.matched]
     const token = userStore.token
-    console.log(to,'即将跳转的路由--')
+    // console.log(to,'即将跳转的路由--')
     //要跳转的页面是登录页时
     if (whiteList.indexOf(to.name) > -1) {
         if (token) {
