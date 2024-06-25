@@ -72,6 +72,7 @@ export const useRouterStore=defineStore('router',()=>{
             asyncRouterHandle(baseRouter)
             asyncRouters.value = baseRouter
             //收集需要做缓存的路由
+            keepAliveRouters.value=[]
             KeepAliveFilter(asyncRouter)
             return true
         } catch (error) {

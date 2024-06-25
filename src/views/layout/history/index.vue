@@ -61,7 +61,9 @@ const setTab = (route) => {
     delete obj.meta.matched;
     historys.value.push(obj);
   }
+  activeRouter.value =route.name
   window.sessionStorage.setItem("activeRouter", route.name);
+  
 };
 watch(
   () => route,
@@ -71,7 +73,6 @@ watch(
     }
     setTab(to);
     sessionStorage.setItem("historys", JSON.stringify(historys.value));
-    activeRouter.value = window.sessionStorage.getItem("activeRouter");
   },
   { deep: true }
 );

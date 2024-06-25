@@ -106,6 +106,7 @@ const selectMenu = (index) => {
 }
 
 :deep(.el-menu) {
+	border-right:0;
 	.el-menu-item,
 	.el-sub-menu__title {
 		[class^='iconfont'] {

@@ -17,7 +17,8 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
             "icon": "ele-CaretBottom",
             "closeTab": false,
             "mainTable": "",
-            "associateTables": ""
+            "associateTables": "",
+            "redirectRoute":''
         },
         
         "menuBtn": null,
@@ -42,7 +43,8 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
             "icon": "ele-Setting",
             "closeTab": false,
             "mainTable": "",
-            "associateTables": ""
+            "associateTables": "",
+            "redirectRoute":''
         },
         
         "menuBtn": null,
@@ -66,7 +68,8 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
                     "icon": "",
                     "closeTab": false,
                     "mainTable": "",
-                    "associateTables": ""
+                    "associateTables": "",
+                    "redirectRoute":''
                 },
                 
                 "menuBtn": null,
@@ -92,7 +95,8 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
                     "icon": "",
                     "closeTab": false,
                     "mainTable": "",
-                    "associateTables": ""
+                    "associateTables": "",
+                    "redirectRoute":''
                 },
                 
                 "menuBtn": null,
@@ -101,7 +105,8 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
                 "children": null,
                 "parameters": [],
             }
-        ]
+        ],
+      
     },
     {
         "ID": 40,
@@ -120,7 +125,8 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
             "icon": "ele-Money",
             "closeTab": false,
             "mainTable": "",
-            "associateTables": ""
+            "associateTables": "",
+            "redirectRoute":''
         },
         
         "menuBtn": null,
@@ -144,7 +150,8 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
                     "icon": "",
                     "closeTab": false,
                     "mainTable": "jt_visited_outworker",
-                    "associateTables": ""
+                    "associateTables": "",
+                    "redirectRoute":''
                 },
                 
                 "menuBtn": null,
@@ -171,7 +178,8 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
                     "icon": "",
                     "closeTab": false,
                     "mainTable": "",
-                    "associateTables": ""
+                    "associateTables": "",
+                    "redirectRoute":''
                 },
                 
                 "menuBtn": null,
@@ -183,34 +191,37 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
                         "name": 'htmlCom',
                         "component":"views/nestedMenuManagement/visitWorkflowConfig/htmlCom/index.vue",
                         "meta": {
-                        "title": '组件1'
+                            "title": '组件1',
+                            "redirectRoute":''
                         },
                         "query":{
                             "activeName":'first'
-                        }
-
+                        },
+                        
                     },
                     {
                         "path": 'javascriptCom',
                         "name": 'javascriptCom',
                         "component":"views/nestedMenuManagement/visitWorkflowConfig/javascriptCom/index.vue",
                         "meta": {
-                        "title": '组件2'
+                            "title": '组件2',
+                            "redirectRoute":''
                         },
                         "query":{
                             "activeName":'second'
-                        }
+                        },
                     },
                     {
                         "path": 'cssCom',
                         "name": 'cssCom',
                         "component":"views/nestedMenuManagement/visitWorkflowConfig/cssCom/index.vue",
                         "meta": {
-                            "title": '组件3'
+                            "title": '组件3',
+                            "redirectRoute":''
                         },
                         "query":{
                             "activeName":'third'
-                        }
+                        },
                     }
                    
                 ],
@@ -233,7 +244,8 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
                     "icon": "ele-Notebook",
                     "closeTab": false,
                     "mainTable": "",
-                    "associateTables": ""
+                    "associateTables": "",
+                    "redirectRoute":''
                 },
                 
                 "menuBtn": null,
@@ -257,7 +269,8 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
                             "icon": "",
                             "closeTab": false,
                             "mainTable": "",
-                            "associateTables": ""
+                            "associateTables": "",
+                            "redirectRoute":''
                         },
                         
                         "menuBtn": null,
@@ -282,7 +295,8 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
                             "icon": "",
                             "closeTab": false,
                             "mainTable": "jt_store_check",
-                            "associateTables": ""
+                            "associateTables": "",
+                            "redirectRoute":''
                         },
                         
                         "menuBtn": null,
@@ -316,7 +330,8 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
             "icon": "ele-Avatar",
             "closeTab": false,
             "mainTable": "",
-            "associateTables": ""
+            "associateTables": "",
+            "redirectRoute":''
         },
         
         "menuBtn": null,
@@ -340,7 +355,8 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
                     "icon": "",
                     "closeTab": false,
                     "mainTable": "",
-                    "associateTables": ""
+                    "associateTables": "",
+                    "redirectRoute":''
                 },
                 
                 "menuBtn": null,
@@ -348,6 +364,7 @@ const menuData =JSON.parse(localStorage.getItem('menuData'))||[
                 "menuId": "5",
                 "children": null,
                 "parameters": [],
+                
             }
         ],
     

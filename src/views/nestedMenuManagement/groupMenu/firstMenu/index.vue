@@ -6,9 +6,17 @@
 </template>
 <script setup>
 import { ref ,getCurrentInstance} from 'vue'
-  defineOptions({
-    name: 'firstMenu'
-  });
+defineOptions({
+  name: 'firstMenu'
+});
+
+onActivated() {
+  console.log('firstMenu activated')
+}
+onDeactivated() {
+  console.log('firstMenu deactivated')
+}
+
 const test=ref('test')
 console.log(getCurrentInstance(),'getCurrentInstance')
 </script>

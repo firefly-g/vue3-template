@@ -16,6 +16,7 @@
     name: 'groupMenu'
   });
   const routerStore = useRouterStore()
+  console.log(routerStore.keepAliveRouters,'routerStore.keepAliveRouters')
 
   </script>
   
