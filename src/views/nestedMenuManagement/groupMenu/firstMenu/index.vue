@@ -5,17 +5,17 @@
   </div>
 </template>
 <script setup>
-import { ref ,getCurrentInstance} from 'vue'
+import { ref ,getCurrentInstance,onActivated,onDeactivated} from 'vue'
 defineOptions({
   name: 'firstMenu'
 });
 
-onActivated() {
-  console.log('firstMenu activated')
-}
-onDeactivated() {
-  console.log('firstMenu deactivated')
-}
+// onActivated() {
+//   console.log('firstMenu activated')
+// }
+// onDeactivated() {
+//   console.log('firstMenu deactivated')
+// }
 
 const test=ref('test')
 console.log(getCurrentInstance(),'getCurrentInstance')
