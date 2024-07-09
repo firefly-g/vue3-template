@@ -1,10 +1,10 @@
 <template>
-	<!-- <div class="menu-box"> -->
+	<div class="menu-box">
 		<div class="main-menu">
 			<el-scrollbar class="flex-1">
 				<el-menu
 					class="el-menu-box"
-					:collapse="isCollapse"
+					:collapse="collapseValue"
 					background-color="#545c64"
 					text-color="#fff"
 					:default-active="menuActive"
@@ -18,13 +18,13 @@
 			<div class="menu-footer">
 				<div class="footer-item">
 					<el-icon @click="handleCollapse">
-						<Expand v-if="isCollapse" />
+						<Expand v-if="collapseValue" />
 						<Fold v-else />
 					</el-icon>
 				</div>
 			</div>
 		</div>
-	<!-- </div> -->
+	</div>
 </template>
 
 <script setup lang="ts">
@@ -34,9 +34,18 @@ import menuChild from './components/menuChild.vue'
 import { useRouterStore } from '@/pinia/modules/router'
 import { emitter, MittType } from '@/utils/bus'
 import { Fold, Expand} from '@element-plus/icons-vue'
+import { useVModel } from '@vueuse/core'
+
+interface Props {
+	modelValue: boolean
+	windowWidth: number
+}
+const props = defineProps<Props>()
+const emit = defineEmits(['update:modelValue'])
+const collapseValue = useVModel(props, 'modelValue', emit)
+
 const route = useRoute()
 const router = useRouter()
-const isCollapse = ref(false)
 const routerStore = useRouterStore()
 const menuData =computed(() => {
 	return routerStore.asyncRouters?.[0]?.children
@@ -47,7 +56,7 @@ const menuActive = computed(() => {
 })
 
 const handleCollapse = () => {
-	isCollapse.value = !isCollapse.value
+	collapseValue.value = !collapseValue.value
 }
 
 const selectMenu = (index) => {
@@ -74,6 +83,7 @@ const selectMenu = (index) => {
 <style lang="scss" scoped>
 .menu-box{
 	position: fixed;
+	top: 0;
 	left: 0;
 	bottom: 0;
 	display: flex;
